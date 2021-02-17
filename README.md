@@ -10,10 +10,10 @@ The user is prompted to enter a length for the generated password.
 
 User is then prompted for types of character sets they would like included in the randomized password
 Chartypes include:
-    * lowercase alpha (a-z)
-    * uppercase alpha (A-Z)
-    * digits          (0-9)
-    * special characters (~!@#$%^&*-.?)
-      - brackets of any kind as well as a few other characters are omitted due to illegality on some platforms
+  - lowercase alpha (a-z)
+  - uppercase alpha (A-Z)
+  - digits          (0-9)
+  - special characters (~!@#$%^&*-.?)
+    - brackets of any kind as well as a few other characters are omitted due to illegality on some platforms
 
 
