@@ -7,8 +7,8 @@ let CaesarPasswordReturn = document.getElementById("caesarPasswordReturn");
 /*
 * getInput
 * Creates a prompt window and returns the text entered.
-* @param promptText The text to display in the prompt window
-* @param defaultText the default text to display in the input part of the prompt window 
+* @param {promptText} The text to display in the prompt window
+* @param {defaultText} the default text to display in the input part of the prompt window 
 */
 function getInput(promptText, defaultText) 
 {
@@ -20,7 +20,7 @@ function getInput(promptText, defaultText)
 /*
 * sendAlert 
 * creates an alert window and does not return anything
-* @param promptText The text to display in the alert window
+* @param {promptText} The text to display in the alert window
 */
 function sendAlert(promptText)
 {
@@ -32,7 +32,7 @@ function sendAlert(promptText)
 /*
 * doConfirm 
 * creates an confirm window and returns a bool based on user choice
-* @param promptText The text to display in the confirm window
+* @param {promptText} The text to display in the confirm window
 */
 function doConfirm(promptText)
 {
@@ -47,13 +47,34 @@ function getRandomInt(max) {
 
 /*
 * password Object
-* an Object to hold all the parameters and methods to set and check those parameters for a randomly generated password
+* An Object to hold all the parameters and methods to set and check those parameters for a randomly generated password.
+*
+* @param {randomGeneratedPassword} String - The resulting password to be generated.
+* @param {length} Int/Number - Length of randomly generated password.
+* @param {hasValidLength} bool - should be true when {length} is between 8 and 128.
+* @param {charTypes} Object - object containing bools for character set types to be used in random generation.
+* @param {validCharSelection} bool - should be true when at least one charType in {charTypes} is true.
+*
+* @method {getRandomPasswordParameters} used to set object params for randomly generating a password.
+!         {getRandomPasswordParameters} will return undefined value and break operation if {length} === "cancel".
+* @method {generateRandomPassword} uses object params for randomly generate password.
+!         {generateRandomPassword} will return "Your Password Here" to spoof a cancel operation if {length} === "cancel".
+* @method {getUserLength} calls a prompt box to get user input and assigns user input to {length}.
+!         {getUserLength} will set {length} to "cancel" if cancel button is pressed in prompt window.
+* @method {checkLength} verifies {length} is between 8 and 128 and sets {hasValidLength} true if so.
+!         {checkLength} will set {hasValidLength} true if length === "cancel".
+* @method {getCharTypes} Uses a series of confirm boxes to first check if user wants to specify which character types they want to use
+*                        and then if yes asks per character type if they want it included in the randomly generated password and assigns true to 
+*                        corresponding keys in {charTypes}. Sets all to true if user does not want to specify.
+* @method {checkCharTypes} checks to see if at least one value for keys in {charTypes} is true and confirms selection.
+* @method {resetParams} resets all @params to default values.
+*
 */
 let password = 
 {
     //--------------- Password and generator ---------------//
-    generatedPassword:"",
-    getPasswordParameters:function()
+    randomGeneratedPassword:"",
+    getRandomPasswordParameters:function()
         {
             //reset the password object for generating a new password
             this.resetParams();
@@ -62,6 +83,11 @@ let password =
             while(!this.hasValidLength)
             {
                 this.getUserLength();
+                //do a check for if user pressed cancel
+                if (this.length === "cancel")
+                {
+                    break;
+                }
                 this.checkLength();
             } 
 
@@ -93,15 +119,19 @@ let password =
         },
     generateRandomPassword:function()
         {
+            //check for cancel length passed by pressing cancel button in getUserLength()
             if (this.length === "cancel")
             {
                 return "Your Password Here";
             }
             else
             {
+                //create an array that will make password creation and manipulation easier to handle
                 let arrPassword = [];
+                //array of special char to randomly pull from
                 let arrSpecials = ["~","!","@","#","$","%","^","&","*","-",".","?"];
 
+                //write a random password by going through each char type and if set to true add a char ot arrPassword
                 while(arrPassword.length < this.length)
                 {
                     if(this.charTypes.lowercase)
@@ -124,8 +154,11 @@ let password =
                         arrPassword.push(arrSpecials[getRandomInt(arrSpecials.length)]);
                     }
                 }
-                    
-                return arrPassword.join("");
+                
+                //joins arrPassword into single string and asigns it randomGeneratedPassword for possible manipulation later
+                this.randomGeneratedPassword = arrPassword.join("");
+
+                return this.randomGeneratedPassword;
             }
         },
     //--------------- length ---------------//
@@ -133,24 +166,24 @@ let password =
     hasValidLength:false,
     getUserLength:function()
         {
+            //get a length from the user
             let input = getInput("How long would you like your password to be?", "Enter a number between 8 and 128");
 
+            //if the cancel button was pressed set to specialtag "cancel"
             if (input === null)
             {
                 this.length = "cancel";
             }
             else
             {
-                this.length = input;
+                //ceils the user input to the next biggest whole number incase user inputs float for some reason
+                this.length = Math.ceil(input);
             }
         },
     checkLength:function()
         {
+            //check if length is between 8 and 128
             if (this.length >= 8 && this.length <= 128)
-            {
-                this.hasValidLength = true;
-            }
-            else if (this.length === "cancel")
             {
                 this.hasValidLength = true;
             }
@@ -171,11 +204,14 @@ let password =
         },
     checkCharTypes: function()
         {
+            //define an array of Chartypes for easy iteration and manipulation
             let arrCharTypes = [];
+            //for all keys in charTypes if the value is true add to array
             for(let key of Object.keys(this.charTypes))
             {
                 this.charTypes[key] == true? arrCharTypes.push(key): null;
             }
+            //make sure at least one charType has a value of true
             if(arrCharTypes.length != 0)
             {
                 this.validCharSelection = true;
@@ -201,7 +237,7 @@ let password =
 */
 randomGenerateButton.addEventListener("click", e =>
 {
-    password.getPasswordParameters();
+    password.getRandomPasswordParameters();
     randomPasswordReturn.textContent = password.generateRandomPassword();
     if(password.length !== "cancel")
     {
