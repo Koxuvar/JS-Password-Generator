@@ -41,6 +41,11 @@ function doConfirm(promptText)
     return retVal;
 }
 
+/*
+* getRandomInt
+* multiplies a random number between 0 and 1 with a specified max value and floors that product to return the next lowest whole number
+* @param {max} the max value for the random Int to be - ex: 3 returns 0, 1, or 2
+*/
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
@@ -136,22 +141,22 @@ let password =
                 {
                     if(this.charTypes.lowercase)
                     {
-                        arrPassword.push(String.fromCharCode(getRandomInt(26) + 'a'.charCodeAt(0)));
+                        arrPassword.push(String.fromCharCode(getRandomInt(26) + 'a'.charCodeAt(0)));//random number between 0 and 25 + the ascii value for lowercase a in String.fromCharCode to get a random Uppercase letter
                     }
 
                     if(this.charTypes.uppercase)
                     {
-                        arrPassword.push(String.fromCharCode(getRandomInt(26) + 'A'.charCodeAt(0)));
+                        arrPassword.push(String.fromCharCode(getRandomInt(26) + 'A'.charCodeAt(0))); //random number between 0 and 25 + the ascii value for Uppercase A in String.fromCharCode to get a random Uppercase letter
                     }
 
                     if(this.charTypes.digits)
                     {
-                        arrPassword.push(getRandomInt(10));
+                        arrPassword.push(getRandomInt(10));//random number between 0 and 9
                     }
 
                     if(this.charTypes.specials)
                     {
-                        arrPassword.push(arrSpecials[getRandomInt(arrSpecials.length)]);
+                        arrPassword.push(arrSpecials[getRandomInt(arrSpecials.length)]); //get a random char from the array of special chars using a random index 
                     }
                 }
                 
