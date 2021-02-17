@@ -16,4 +16,4 @@ Chartypes include:
   - special characters (~!@#$%^&*-.?)
     - brackets of any kind as well as a few other characters are omitted due to illegality on some platforms
 
-
+The password is then generated using random selections from each of the selected character types.
