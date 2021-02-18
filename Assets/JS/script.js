@@ -88,19 +88,13 @@ let password =
             while(!this.hasValidLength)
             {
                 this.getUserLength();
-                //do a check for if user pressed cancel
+                //do a check for if user pressed cancel and break out of the method function if true
                 if (this.length === "cancel")
                 {
-                    break;
+                    return;
                 }
                 this.checkLength();
             } 
-
-            //break out of the function if the cancel button was pressed in getUserLength()
-            if (this.length === "cancel")
-            {
-                return;
-            }
 
             //ask if the user wants specific types of characters. if returns false, all character types are used
             if(doConfirm("Would you like to specify what types of characters your password has? (Cancel for all alphanumeric and special characters)"))
