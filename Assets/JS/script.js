@@ -141,22 +141,26 @@ let password =
                 {
                     if(this.charTypes.lowercase)
                     {
-                        arrPassword.push(String.fromCharCode(getRandomInt(26) + 'a'.charCodeAt(0)));//random number between 0 and 25 + the ascii value for lowercase a in String.fromCharCode to get a random Uppercase letter
+                        //random number between 0 and 25 + the ascii value for lowercase a in String.fromCharCode to get a random Uppercase letter
+                        arrPassword.push(String.fromCharCode(getRandomInt(26) + 'a'.charCodeAt(0)));
                     }
 
                     if(this.charTypes.uppercase)
                     {
-                        arrPassword.push(String.fromCharCode(getRandomInt(26) + 'A'.charCodeAt(0))); //random number between 0 and 25 + the ascii value for Uppercase A in String.fromCharCode to get a random Uppercase letter
+                        //random number between 0 and 25 + the ascii value for Uppercase A in String.fromCharCode to get a random Uppercase letter
+                        arrPassword.push(String.fromCharCode(getRandomInt(26) + 'A'.charCodeAt(0))); 
                     }
 
                     if(this.charTypes.digits)
                     {
-                        arrPassword.push(getRandomInt(10));//random number between 0 and 9
+                        //random number between 0 and 9
+                        arrPassword.push(getRandomInt(10));
                     }
 
                     if(this.charTypes.specials)
                     {
-                        arrPassword.push(arrSpecials[getRandomInt(arrSpecials.length)]); //get a random char from the array of special chars using a random index 
+                        //get a random char from the array of special chars using a random index 
+                        arrPassword.push(arrSpecials[getRandomInt(arrSpecials.length)]); 
                     }
                 }
                 
