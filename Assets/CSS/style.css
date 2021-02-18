@@ -4,10 +4,14 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+/* Define CSS variables */
 :root{
     --red: rgb(163, 0, 0);
+    --bglite: rgb(226, 226, 226);
+    --bgwhite: rgb(255,255,255);
 }
 
+/* Begin general elemnt styling */
 header{
     background: var(--red);
     color: white;
@@ -16,6 +20,7 @@ header{
 }
 
 main{
+    background-color: var(--bglite);
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -34,11 +39,14 @@ button{
     font-size: larger;
 }
 
+/* begin class styling */
 .outside-box{
     margin-top: 2rem;
     width: 75%;
+    background-color: var(--bgwhite);
     border: 1px solid black;
     border-radius: 10px;
+    box-shadow: 0px 0px 30px rgba(0,0,0,.3);
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -50,10 +58,12 @@ button{
     width: 75%;
 }
 
+/* give the h1 a little more room to breathe */
 .inside-box h1{
     padding-bottom: 1rem;
 }
 
+/* fun little borderbox for the password return */
 .password-display{
     border: 1px dashed black;
     border-radius: 10px;
@@ -65,6 +75,9 @@ button{
     word-wrap: break-word;
 }
 
+/* password -- starts at half opacity and will be set to full once a password is generated.
+* see ./Assets/JS/script.js for styling changes
+ */
 .password-return{
     font-size: 1.25rem;;
     opacity: .5;
