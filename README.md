@@ -1,7 +1,7 @@
 # JS-Password-Generator
 A deployable web application that generates a password based on given user parameters. 
 
-## For learning purposes only as the source code for the encryption algorithm is available publicaly in this repo.
+## !! For learning purposes only as the source code for the encryption algorithm is available publicaly in this repo !!
 
 ## Description
 
