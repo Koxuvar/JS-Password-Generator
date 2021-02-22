@@ -1,6 +1,9 @@
 # JS-Password-Generator
 A deployable web application that generates a password based on given user parameters. 
 
+The deployed application can be accessed here:
+https://koxuvar.github.io/JS-Password-Generator/
+
 ## !! For learning purposes only as the source code for the encryption algorithm is available publicaly in this repo !!
 
 ## Description
@@ -17,3 +20,5 @@ Chartypes include:
     - brackets of any kind as well as a few other characters are omitted due to illegality on some platforms
 
 The password is then generated using random selections from each of the selected character types.
+
+![screenshot](./Assets/Images/screenshot.png)
