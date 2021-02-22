@@ -21,6 +21,7 @@ header{
 
 main{
     background-color: var(--bglite);
+    height: 100vh;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -42,7 +43,7 @@ button{
 /* begin class styling */
 .outside-box{
     margin-top: 2rem;
-    width: 75%;
+    width: 55%;
     background-color: var(--bgwhite);
     border: 1px solid black;
     border-radius: 10px;
