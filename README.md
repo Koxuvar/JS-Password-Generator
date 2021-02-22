@@ -21,4 +21,4 @@ Chartypes include:
 
 The password is then generated using random selections from each of the selected character types.
 
-![screenshot](/Assets/Images/screenshot.png)
+![screenshot](./Assets/Images/Screenshot.png)
